@@ -1,13 +1,13 @@
-import Input from "./Input";
+
+import ToDo from "./components/ToDo";
 
 
 function App() {
-  return (
+  return(
     <div>
-      <Input/> 
-      
+      <ToDo />
     </div>
-  );
-}
+  )
 
+}
 export default App;
