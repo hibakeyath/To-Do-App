@@ -1,13 +1,11 @@
 import TodoItem from "./todoItem";
-
-function TodoList({
-  list,
-  setList,
-  editingIndex,
-  setEditingIndex,
-  editText,
-  setEditText
+function TodoList({ 
+  list, 
+  deleteTodo,
+  toggleTodo,
+  editTodo
 }) {
+
   return (
     <ul>
       {list.map((item, index) => (
@@ -15,12 +13,9 @@ function TodoList({
           key={index}
           item={item}
           index={index}
-          list={list}
-          setList={setList}
-          editingIndex={editingIndex}
-          setEditingIndex={setEditingIndex}
-          editText={editText}
-          setEditText={setEditText}
+          editTodo = {editTodo}
+          toggleTodo = {toggleTodo}
+          deleteTodo = {deleteTodo}
         />
       ))}
     </ul>

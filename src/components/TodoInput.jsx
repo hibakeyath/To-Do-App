@@ -1,9 +1,13 @@
-function TodoInput({
-  text,
-  setText,
-  list,
-  setList
-}) {
+import { useState } from "react";
+export default function TodoInput({ onAddTodo }){
+  const [text, setText] = useState("");
+
+  const handleAdd = () =>{
+    if (text.trim() === "") return;
+    onAddTodo(text);
+    setText("");
+  };
+
   return (
     <>
       <input
@@ -15,24 +19,13 @@ function TodoInput({
       />
 
       <button
-        onClick={() => {
-          if (text.trim() === "") return;
-
-          setList([...list,
-            {
-              text: text,
-              done: false
-            }
-          ]);
-
-          setText("");
-        }}
+        onClick={handleAdd}
         className="bg-gray-500 hover:bg-gray-600 text-white px-4 h-12 rounded-r-lg"
-      >
-        Add
-      </button>
+      >Add</button >
     </>
   );
 }
 
-export default TodoInput;
+
+
+

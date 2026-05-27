@@ -1,38 +1,61 @@
 import { useState, useEffect } from "react";
-
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 
 function ToDo() {
-  const [text, setText] = useState("");
+  
   const [list, setList] = useState(() => {
   const savedList = localStorage.getItem("todos");
     return savedList ? JSON.parse(savedList) : [];
   });
-  const [editingIndex, setEditingIndex] = useState(null);
-  const [editText, setEditText] = useState("");
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(list));
   }, [list]);
+
+
+  const addTodo=(text)=>{
+      setList([...list,
+        {
+          text: text,
+          done: false
+        }
+      ])
+  };
+  const deleteTodo = (index) =>{
+    const updatedList = [...list];
+    updatedList.splice(index, 1);
+    setList(updatedList);
+  };
+  const toggleTodo = (index, checked) =>{
+    const updatedList = [...list];
+    updatedList[index] = {
+      ...updatedList[index],
+      done: checked
+    };
+    setList(updatedList); 
+  };
+  const editTodo = (index, text) => {
+    const updatedList = [...list];
+    updatedList[index] = {
+      ...updatedList[index],
+      text
+    };
+    setList(updatedList);
+  };
+    
+
   return (
     <div className="bg-gray-800 min-h-screen">
       <div className="flex justify-center items-center h-screen">
         <div className="bg-gray-200 p-6 rounded-xl w-100">
-
-          <TodoInput
-            text={text}
-            setText={setText}
-            list={list}
-            setList={setList}
+          <TodoInput 
+            onAddTodo = {addTodo}
           />
-
           <TodoList
             list={list}
-            setList={setList}
-            editingIndex={editingIndex}
-            setEditingIndex={setEditingIndex}
-            editText={editText}
-            setEditText={setEditText}
+            editTodo = {editTodo}
+            toggleTodo = {toggleTodo}
+            deleteTodo = {deleteTodo}
           />
 
         </div>
