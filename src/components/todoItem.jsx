@@ -20,8 +20,11 @@ function TodoItem({
   
   
   return (
-    <li className="flex justify-between items-center bg-blue-300 p-3 my-2 rounded-xl hover:bg-blue-400 transition-all duration-300">
+    
+    
 
+    <li className="flex justify-between items-center bg-blue-300 p-3 my-2 rounded-xl hover:bg-blue-400 transition-all duration-300">
+     
       {isEditing  ? (
         <>
           <input

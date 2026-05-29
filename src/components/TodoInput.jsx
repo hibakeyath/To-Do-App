@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 export default function TodoInput({ onAddTodo }){
   const [text, setText] = useState("");
 
